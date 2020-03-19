@@ -1,4 +1,4 @@
-package framework.webPages.darkskyAPI;
+package framework.webPages.DarkSky;
 
 import framework.webPages.BasePages.BasePage;
 import org.openqa.selenium.By;

@@ -1,17 +1,17 @@
-package stepdefinition.darkSkyAPI;
+package stepdefinition.DarkSky;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import framework.webPages.darkskyAPI.DarkSkyApiPage;
-import framework.webPages.darkskyAPI.DarkSkyHomePage;
-import framework.webPages.darkskyAPI.DarkSkyRegistrationPage;
+import framework.webPages.DarkSky.DarkSkyApiPage;
+import framework.webPages.DarkSky.DarkSkyHomePage;
+import framework.webPages.DarkSky.DarkSkyRegistrationPage;
 import org.testng.Assert;
 import util.DateUtil;
 
 import java.util.List;
 
-public class DarkSkyHomePageSD {
+public class DarkSkySD {
 
     private DarkSkyHomePage darkSkyHomePage = new DarkSkyHomePage();
     private DarkSkyApiPage darkSkyApiPage = new DarkSkyApiPage();
@@ -35,14 +35,14 @@ public class DarkSkyHomePageSD {
 
     @Then("^I verify current temp is not greater or less then temps from daily timeline$")
     public void verifyCurrentTempIsInBetweenMinimumMaximumTemps(){
-        int currentTemp = darkSkyHomePage.getCurrentTemperature();
-        int maxTemp = darkSkyHomePage.getMaxTimelineTemperature();
-        int minTemp = darkSkyHomePage.getMinTimelineTemperature();
+        int currentTemperature = darkSkyHomePage.getCurrentTemperature();
+        int maximumTemperature = darkSkyHomePage.getMaximumTimelineTemperature();
+        int minimumTemperature = darkSkyHomePage.getMinimumTimelineTemperature();
 
-        boolean inRange = darkSkyHomePage.isCurrentTemperatureInBetween(currentTemp, maxTemp, minTemp);
+        boolean inRange = darkSkyHomePage.isCurrentTemperatureInBetweenRange(currentTemperature, maximumTemperature, minimumTemperature);
 
         Assert.assertTrue(inRange,
-                "Current Temp " + currentTemp + " is not in between " + maxTemp + " and " + minTemp);
+                "Current Temperature " + currentTemperature + " is not in between " + maximumTemperature + " and " + minimumTemperature);
     }
 
     @Then("^I verify timeline is displayed with (\\d+) hours incremented$")
@@ -64,10 +64,10 @@ public class DarkSkyHomePageSD {
     @Then("^I verify lowest and highest temp is displayed correctly$")
     public void verifyLowestAndHighestTemp() throws InterruptedException {
         darkSkyHomePage.clickOnTodayTimeline();
-        String minTimelineTemp = darkSkyHomePage.getMinimumTimelineTempOfToday();
-        String maxTimelineTemp = darkSkyHomePage.getMaximumTimelineTempOfToday();
-        String lowestTemp = darkSkyHomePage.getLowestTempOfToday();
-        String highestTemp = darkSkyHomePage.getHighestTempOfToday();
+        String minTimelineTemp = darkSkyHomePage.getMinimumTimelineTemperatureOfToday();
+        String maxTimelineTemp = darkSkyHomePage.getMaximumTimelineTemperatureOfToday();
+        String lowestTemp = darkSkyHomePage.getLowestTemperatureOfToday();
+        String highestTemp = darkSkyHomePage.getHighestTemperatureOfToday();
 
 
         Assert.assertTrue(minTimelineTemp.equals(lowestTemp),
@@ -77,18 +77,18 @@ public class DarkSkyHomePageSD {
                 "Timeline max temp " + maxTimelineTemp +" does't match with highest temp " + highestTemp);
     }
 
-    @When("^I click on Dark Sky API link at home page$")
+    @When("^I click on the Dark Sky API link at home page$")
     public void clickOnDarkSkyApiLink(){
         darkSkyApiPage = darkSkyHomePage.clickOnDarkSkyApiLink();
     }
 
-    @When("^I click on Sign Up button at the Dark Sky API page$")
+    @When("^I click on the Sign Up button at the Dark Sky API page$")
     public void clickOnSighUpButton() throws InterruptedException {
         Thread.sleep(2000);
         darkSkyRegistrationPage = darkSkyApiPage.clickOnSignUpButton();
     }
 
-    @When("^I click on Register button at the registration page$")
+    @When("^I click on the Register button at the registration page$")
     public void clickToRegister() {
         darkSkyRegistrationPage.clickOnRegisterButton();
     }

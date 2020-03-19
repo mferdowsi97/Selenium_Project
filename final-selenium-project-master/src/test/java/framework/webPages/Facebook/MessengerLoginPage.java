@@ -1,4 +1,4 @@
-package framework.webPages.facebook;
+package framework.webPages.Facebook;
 
 import framework.webPages.BasePages.BasePage;
 

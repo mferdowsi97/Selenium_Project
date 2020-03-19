@@ -1,9 +1,9 @@
 package stepdefinition.facebook;
 
 import cucumber.api.java.en.Given;
-import framework.webPages.facebook.FacebookLandingPage;
-import framework.webPages.facebook.MessengerLoginPage;
-import framework.webPages.facebook.MessengerPage;
+import framework.webPages.Facebook.FacebookLandingPage;
+import framework.webPages.Facebook.MessengerLoginPage;
+import framework.webPages.Facebook.MessengerPage;
 import org.testng.Assert;
 import stepdefinition.SharedSD.SharedSD;
 

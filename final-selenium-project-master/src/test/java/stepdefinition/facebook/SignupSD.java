@@ -2,7 +2,7 @@ package stepdefinition.facebook;
 
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
-import framework.webPages.facebook.FacebookLandingPage;
+import framework.webPages.Facebook.FacebookLandingPage;
 
 public class SignupSD {
 

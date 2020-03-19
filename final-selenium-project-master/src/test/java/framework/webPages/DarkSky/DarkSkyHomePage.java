@@ -1,4 +1,4 @@
-package framework.webPages.darkskyAPI;
+package framework.webPages.DarkSky;
 
 import framework.webPages.BasePages.BasePage;
 import org.openqa.selenium.By;
@@ -18,8 +18,7 @@ public class DarkSkyHomePage extends BasePage {
     private By lowestTempOfToday = By.xpath("(//div[contains(@class, 'highLowTemp')])[1]//span[contains(@class, 'highTemp')]//span[@class = 'temp']");
     private By highestTempOfToday = By.xpath("(//div[contains(@class, 'highLowTemp')])[1]//span[contains(@class, 'lowTemp')]//span[@class = 'temp']");
 
-    public DarkSkyApiPage clickOnDarkSkyApiLink(){
-        clickOn(darkSkyApiLink);
+    public DarkSkyApiPage clickOnDarkSkyApiLink(){ clickOn(darkSkyApiLink);
         return new DarkSkyApiPage();
     }
     public int getCurrentTemperature(){
@@ -32,19 +31,20 @@ public class DarkSkyHomePage extends BasePage {
         return getValuesFromElements(timelineTemperatures);
     }
 
-    public int getMaxTimelineTemperature(){
+    public int getMaximumTimelineTemperature(){
         List<String> timelineTemperatures = getTimelineTemperatures();
         String maxTemp = Collections.max(timelineTemperatures).replace("°", "");
         return Integer.parseInt(maxTemp);
     }
 
-    public int getMinTimelineTemperature(){
+
+    public int getMinimumTimelineTemperature(){
         List<String> timelineTemperatures = getTimelineTemperatures();
         String minTemp = Collections.min(timelineTemperatures).replace("°", "");
         return Integer.parseInt(minTemp);
     }
 
-    public boolean isCurrentTemperatureInBetween(int currentTemp, int maxTemp, int minTemp){
+    public boolean isCurrentTemperatureInBetweenRange(int currentTemp, int maxTemp, int minTemp){
         return currentTemp <= maxTemp && currentTemp >= minTemp;
     }
 
@@ -58,19 +58,19 @@ public class DarkSkyHomePage extends BasePage {
         clickOn(todayTimeline);
     }
 
-    public String getMinimumTimelineTempOfToday(){
+    public String getMinimumTimelineTemperatureOfToday(){
         return getTextFromElement(minimumTimelineTempOfToday);
     }
 
-    public String getMaximumTimelineTempOfToday(){
+    public String getMaximumTimelineTemperatureOfToday(){
         return getTextFromElement(maximumTimelineTempOfToday);
     }
 
-    public String getLowestTempOfToday(){
+    public String getLowestTemperatureOfToday(){
         return getTextFromElement(lowestTempOfToday);
     }
 
-    public String getHighestTempOfToday(){
+    public String getHighestTemperatureOfToday(){
         return getTextFromElement(highestTempOfToday);
     }
 }
